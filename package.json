@@ -6,13 +6,19 @@
   "scripts": {
     "start": "node index.js",
     "test": "test",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build:ui": "(if exist build rmdir /s /q build ) && cd ../../part2ex && npm run build && xcopy build ..\\parrt3a\\fullstackopenpart3\\build\\ /s /e /y /i",
+    "deploy": "git push heroku master",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
+    "logs:prod": "heroku logs --tail"
   },
   "author": "swetha",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
