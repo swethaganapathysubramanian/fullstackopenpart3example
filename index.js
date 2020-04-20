@@ -85,7 +85,7 @@ app.post('/api/notes', (request, response, next) => {
     })
 
 
-app.put('/api/persons/:id', (req, res, next) => {
+app.put('/api/notes/:id', (req, res, next) => {
     const body = req.body
 
     const notesData = {
