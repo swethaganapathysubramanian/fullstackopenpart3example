@@ -93,7 +93,7 @@ app.put('/api/notes/:id', (req, res, next) => {
         date: body.date,
         important:body.important
     }
-    Notes.findByIdAndUpdate(req.params.id, notesData, { new: true })
+    Note.findByIdAndUpdate(req.params.id, notesData, { new: true })
         .then(updatedNotes => {
             res.json(updatedNotes.toJSON())
         })
