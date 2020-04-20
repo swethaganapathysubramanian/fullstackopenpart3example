@@ -85,21 +85,20 @@ app.post('/api/notes', (request, response, next) => {
     })
 
 
-// app.put('/api/notes/:id',(req,res)=>{
-//     const id = parseInt(req.params.id)
-//     let note = notes.find(note => note.id === id) 
-//    // notes = notes.filter(note => note.id !== id)
-//     console.log(req.body)
-//     const newNote = {
-//         id: id,
-//         content: req.body.content,
-//         important: req.body.important,
-//         date: req.body.date,
-//     }
-//     notes = [...notes,note = newNote]
-//     console.log(notes)
+app.put('/api/persons/:id', (req, res, next) => {
+    const body = req.body
 
-// })
+    const notesData = {
+        content: body.content,
+        date: body.date,
+        important:body.important
+    }
+    Person.findByIdAndUpdate(req.params.id, notesData, { new: true })
+        .then(updatedNotes => {
+            res.json(updatedNotes.toJSON())
+        })
+        .catch(err => next(err))
+})
 
 const errorHandler = (error, request, response, next) => {
     console.error(error.message)
